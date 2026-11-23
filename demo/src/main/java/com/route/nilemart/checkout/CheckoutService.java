@@ -64,7 +64,6 @@ public class CheckoutService {
             throw new StoreException("Cart is empty.");
         }
 
-        // Check stock before changing any quantities.
         cart.lines().forEach((SKU, quantity) -> {
             if (productService.findBySKU(SKU).getStockQuantity() < quantity) {
                 throw new OutOfStockException(
